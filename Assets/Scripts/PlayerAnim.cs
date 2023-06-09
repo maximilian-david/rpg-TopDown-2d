@@ -20,6 +20,7 @@ public class PlayerAnim : MonoBehaviour
     {
         OnMove();
         OnRun();
+
     }
 
     #region Moviment
@@ -27,7 +28,15 @@ public class PlayerAnim : MonoBehaviour
     {
         if (player.direction.sqrMagnitude > 0)
         {
-            anim.SetInteger("Transition", 1);
+            if (player.isRolling)
+            {
+                anim.SetTrigger("isRoll");
+            }
+            else
+            {
+                anim.SetInteger("Transition", 1);
+            }
+            
         }
         else
         {
@@ -52,6 +61,8 @@ public class PlayerAnim : MonoBehaviour
             anim.SetInteger("Transition", 2);
         }
     }
+
+   
 
     #endregion
 }
